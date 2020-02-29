@@ -1,33 +1,34 @@
-package com.yalematta.weathermvvm.ui.weather.future.detail
+package com.yalematta.weathermvvm.ui.weather.future.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.yalematta.weathermvvm.R
 
-class FutureDetailWeatherfragment : Fragment() {
+class FutureListWeatherFragment : Fragment() {
 
     companion object {
         fun newInstance() =
-            FutureDetailWeatherfragment()
+            FutureListWeatherFragment()
     }
 
-    private lateinit var viewModel: FutureDetailWeatherfragmentViewModel
+    private lateinit var viewModel: FutureListWeatherViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.future_detail_weatherfragment_fragment, container, false)
+        return inflater.inflate(R.layout.future_list_weather_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel =
-            ViewModelProviders.of(this).get(FutureDetailWeatherfragmentViewModel::class.java)
+        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+            FutureListWeatherViewModel::class.java)
+
         // TODO: Use the ViewModel
     }
 

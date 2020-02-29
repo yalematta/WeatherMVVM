@@ -12,12 +12,12 @@
         tools:layout="@layout/current_weather_fragment" />
     <fragment
         android:id="@+id/futureListWeatherFragment"
-        android:name="com.yalematta.weathermvvm.ui.weather.future.FutureListWeatherFragment"
+        android:name="com.yalematta.weathermvvm.ui.weather.future.list.FutureListWeatherFragment"
         android:label="future_list_weather_fragment"
         tools:layout="@layout/future_list_weather_fragment" />
     <fragment
         android:id="@+id/futureDetailWeatherfragment"
-        android:name="com.yalematta.weathermvvm.ui.weather.future.detail.FutureDetailWeatherfragment"
+        android:name="com.yalematta.weathermvvm.ui.weather.future.detail.FutureDetailWeatherFragment"
         android:label="future_detail_weatherfragment_fragment"
         tools:layout="@layout/future_detail_weatherfragment_fragment" />
     <fragment
