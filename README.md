@@ -1,2 +1,2 @@
 # WeatherMVVM
-A real Forecast app using the MVVM architectural pattern
+Forecast app using the MVVM design pattern
