@@ -1,7 +1,9 @@
 package com.yalematta.weathermvvm
 
 import android.app.Application
+import android.content.Context
 import android.preference.PreferenceManager
+import com.google.android.gms.location.LocationServices
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.yalematta.weathermvvm.data.ApiService
 import com.yalematta.weathermvvm.data.db.ForecastDatabase
@@ -35,11 +37,11 @@ class WeatherApplication : Application(), KodeinAware {
         bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
         bind() from singleton { ApiService(instance()) }
         bind<WeatherNetworkDataSource>() with singleton { WeatherNetworkDataSourceImpl(instance()) }
-        bind<LocationProvider>() with singleton { LocationProviderImpl() }
+        bind<LocationProvider>() with singleton { LocationProviderImpl(instance(), instance()) }
         bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance(), instance(), instance()) }
         bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
         bind() from provider { CurrentWeatherViewModelFactory(instance(), instance()) }
-
+        bind() from provider { LocationServices.getFusedLocationProviderClient(instance<Context>()) }
     }
 
     override fun onCreate() {

@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-const val API_KEY = ""
+const val API_KEY = "8dc69c543e5102112db20ce4c15e7377"
 
 //http://api.weatherstack.com/current
 //    ? access_key = YOUR_ACCESS_KEY
