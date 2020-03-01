@@ -21,7 +21,8 @@ interface ApiService {
 
     @GET("current")
     fun getCurrentWeather(
-        @Query("query") location: String
+        @Query("query") location: String,
+        @Query("units") units: String = "m"
     ): Deferred<CurrentWeatherResponse>
 
     companion object {

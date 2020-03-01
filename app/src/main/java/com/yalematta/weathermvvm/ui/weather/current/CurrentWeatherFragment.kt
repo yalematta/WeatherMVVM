@@ -40,13 +40,24 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
     }
 
     private fun bindUI() = launch {
+
         val currentWeather = viewModel.weather.await()
+
+        val weatherLocation = viewModel.weatherLocation.await()
+
+        weatherLocation.observe(viewLifecycleOwner, Observer { location ->
+
+            if (location == null) return@Observer
+
+            updateLocation(location.name)
+
+        })
+
         currentWeather.observe(viewLifecycleOwner, Observer {
 
             if (it == null) return@Observer
 
             group_loading.visibility = View.GONE
-            updateLocation("London")
             updateDateToToday()
             updateTemperatures(it.temperature, it.feelslike)
             updateCondition(it.weatherDescriptions[0])
@@ -55,29 +66,30 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
             updateVisibility(it.visibility)
 
             GlideApp.with(this@CurrentWeatherFragment)
-                .load("${it.weatherIcons[0]}")
+                .load(it.weatherIcons[0])
                 .into(imageView_condition_icon)
+
         })
     }
 
-    private fun updateLocation(location : String){
+    private fun updateLocation(location: String) {
         (activity as AppCompatActivity)?.supportActionBar?.title = location
     }
 
-    private fun updateDateToToday(){
+    private fun updateDateToToday() {
         (activity as AppCompatActivity)?.supportActionBar?.subtitle = "Today"
     }
 
-    private fun updateTemperatures(temperature: Double, feelsLike: Double){
+    private fun updateTemperatures(temperature: Double, feelsLike: Double) {
         textView_temperature.text = "$temperature"
-        textView_feels_like_temperature.text = "Feels like $temperature"
+        textView_feels_like_temperature.text = "Feels like $feelsLike"
     }
 
-    private fun updateCondition(condition: String){
+    private fun updateCondition(condition: String) {
         textView_condition.text = "$condition"
     }
 
-    private fun updatePrecipitation(precipitation: Double){
+    private fun updatePrecipitation(precipitation: Double) {
         textView_precipitation.text = "Precipitation: $precipitation"
     }
 
