@@ -1,4 +1,4 @@
-package com.yalematta.weathermvvm.data.response
+package com.yalematta.weathermvvm.data.db.entity
 
 
 import com.google.gson.annotations.SerializedName
